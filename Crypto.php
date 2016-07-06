@@ -27,6 +27,12 @@ class Crypto {
     private $cipher_algorithm = 'aes-256-cbc';
 
     /**
+     * The hash algorithm used. The value must correspond to
+     * a string name accepted by PHP's hash(). Available
+     * @var string
+     */
+    private $hash_algorithm = 'sha256';
+    /**
      * Cipher padding mode. This must be one of the constants
      * provided by OpenSSL.
      * @var string
@@ -126,6 +132,11 @@ class Crypto {
                 'MCRYPT_RAND'
         ];
     }
+
+    public function getAvailableHashAlgorithms() : array {
+        return hash_algos();
+    }
+
     /**
      * Encrypt a string with a key and input vector
      * @param string $data - The data to encrypt
@@ -214,12 +225,30 @@ class Crypto {
      * Make an Hmac hash of the data and key
      * @return string - A Hexadecimal representation of the hmac
      */
-    public function createHmac(string $data, string $key) : string{
+    public function createHmac(string $data, string $key) : string {
         // NB Hashing algorithm is probably different to encryption algorithm
-        return hash_hmac($this->cipher_algorithm, $data, $key);
+        return hash_hmac($this->hash_algorithm, $data, $key);
+    }
+    /**
+     * Generate a cryptographic signature of some data with a provided key
+     * @param string $data - The data to generate a signature from
+     * @param string $key - The key used to sign with
+     * @param string $iv - The iv used when encrypting the hash
+     * @param bool $binary - Will output binary if true. Default is hexits
+     * @return string $signature - The signature generated as binary or hexits
+     */
+    public function sign( string $data, string $key, string $iv, bool $binary = false ) : string {
+        $digest = hash($this->hash_algorithm, $data, $binary);
+        $signature = $this->encrypt($digest, $key, $iv);
+        return ['signature' => $signature, 'iv' => $iv];
     }
 
-    public function sign( string $data ) : string {
-
+    public function verify( string $signature, string $data, string $key, string $iv, bool $binary = false) : bool {
+        $decrypted_digest = $this->decrypt($signature, $key, $iv);
+        $new_digest = hash($this->hash_algorithm, $data, $binary);
+        if( $decrypted_digest === $new_digest ) {
+            return true;
+        }
+        return false;
     }
 }
