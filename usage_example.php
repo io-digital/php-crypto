@@ -1,8 +1,6 @@
 <?php
 require 'Crypto.php';
 
-$bob_public = '049fdbf6d4ca6109867d2d0d26f327ceb8cc433024499d712abf9d7207708765ad626a7ea05f3b9bb50e1bf53a9a6ef92c2ae1a68d85f674867a01bf4007fdd3ab';
-
 $c = new Crypto();
 // Alice
 $alice_private_key = $c->makeKey(32);
