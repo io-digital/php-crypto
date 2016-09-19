@@ -9,10 +9,11 @@ while being cryptographically secure. PHP's standard library together with the `
 - PHP 7
 - [mcrypt](http://php.net/manual/en/book.mcrypt.php) extension
 - [openssl](http://php.net/manual/en/book.openssl.php) extension
+- [GMP](http://php.net/manual/en/book.gmp.php) extension
 
 ## Features
 - Supports all the ciphers available to the PHP [openssl module](http://php.net/manual/en/function.openssl-get-cipher-methods.php)
-- Diffie-Hellman implementation for asymmetric encryption using [mcrypt](http://php.net/manual/en/book.mcrypt.php)
+- Diffie-Hellman implementation for asymmetric encryption using [GMP](ttp://php.net/manual/en/book.gmp.php)
 - Signiture generation and verification
 - hmac generation
 
