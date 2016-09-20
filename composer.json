@@ -1,0 +1,16 @@
+{
+    "name": "io-digital/clockwork",
+    "description": "A simple to use PHP library for cryptography",
+    "type": "lib",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    },
+    "license": "GNU GPL v3",
+    "authors": [
+        {
+            "name": "Werner Roets",
+            "email": "werner@io.co.za"
+        }
+    ],
+    "require": {}
+}
