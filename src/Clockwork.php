@@ -3,7 +3,7 @@
  * Clockwork
  * @package
  * @author      Werner Roets <werner@io.co.za>
- * @license     GNU GPL v3
+ * @license     Apache 2.0
  * @version     1.0
  * @link        https://github.com/io-digital/clockwork
  */
