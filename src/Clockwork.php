@@ -231,7 +231,7 @@ class Clockwork {
             throw new Exception("Key must be a Hexadecimal string");
         }
 
-        $prime_gmp = gmp_init(constant($this->prime));
+        $prime_gmp = gmp_init($this->prime);
         $generator_gmp = gmp_init($this->generator);
         $key_gmp = gmp_init('0x'.$private_key);
 
