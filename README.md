@@ -11,8 +11,9 @@ appropriate scheme they can trust to be secure without understanding the mathema
 
 ## Requirements
 - PHP 7
-- [openssl](http://php.net/manual/en/book.openssl.php) extension
-- [GMP](http://php.net/manual/en/book.gmp.php) extension
+- [openssl](http://php.net/manual/en/book.openssl.php) PHP module
+- [GMP](http://php.net/manual/en/book.gmp.php) PHP module
+- [mcrypt](http://php.net/manual/en/book.mcrypt.php) PHP module
 
 ## Current Features
 - Supports all the ciphers available in the [openssl module](http://php.net/manual/en/function.openssl-get-cipher-methods.php)
