@@ -69,9 +69,23 @@ class Clockwork {
      * @var array
      */
     public function __construct( $options = null ) {
+
+        $missing_extensions = [];
+        $required_extensions= ['mcrypt', 'openssl', 'gmp'];
+        foreach($required_extensions as $required_extension) {
+            if(!extension_loaded($required_extension)) {
+                $missing_extensions[] = $required_extension;
+            }
+        }
+
+        if(count($missing_extensions) > 0) {
+            $missing_extensions_string = implode(", ", $missing_extensions);
+            throw new \Exception("The following extensions are required but missing: $missing_extensions_string");
+        }
+
         // Set defaults
         $this->generator = 2;
-        $this->prime_name = 'Clockwork\PRIME_1563BIT';
+        $this->prime_name = 'self::PRIME_1563BIT';
         $this->prime = constant($this->prime_name);
         $this->hash_algorithm = 'sha256';
         $this->cipher_padding = OPENSSL_RAW_DATA;
